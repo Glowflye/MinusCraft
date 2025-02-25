@@ -22,12 +22,15 @@ public class InventorySquareScript : MonoBehaviour
         }
         else
         {
-            invImage = invObj.Image;
+            invImage.sprite = invObj.Image;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
+        {
+            
+        }
     }
 }

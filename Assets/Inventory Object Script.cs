@@ -6,11 +6,11 @@ using UnityEngine.UI;
 public class InventoryObject
 {
     private string name;
-    private Image image;
+    private Sprite image;
     private int value; //Rarity or importance of the item - dropping high value items is BAD
     private int amount; //How many of each item are in the stack
 
-    public InventoryObject(string Name, Image Image, int Value, int Amount)
+    public InventoryObject(string Name, Sprite Image, int Value, int Amount)
     {
         name = Name;
         image = Image;
@@ -25,7 +25,7 @@ public class InventoryObject
         set { amount = value; }
     }
 
-    public Image Image
+    public Sprite Image
     {
         get { return image; }
         set { image = value; }

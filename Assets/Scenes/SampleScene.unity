@@ -519,7 +519,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invGenScript: {fileID: 977444406}
   inventoryPosition: 1
-  invImage: {fileID: 0}
+  invImage: {fileID: 927938922}
 --- !u!114 &927938922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -587,8 +587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598804021252fc64586f50b63a3da606, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
-  tempImg: {fileID: 0}
+  canvas: {fileID: 2136772807}
 --- !u!4 &977444407
 Transform:
   m_ObjectHideFlags: 0
