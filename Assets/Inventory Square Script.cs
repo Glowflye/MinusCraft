@@ -7,6 +7,7 @@ public class InventorySquareScript : MonoBehaviour
 {
     public InventoryGeneration invGenScript;
     public int inventoryPosition; //Declare in unity editor, 1 through 14
+    public InventoryBehaviour inventoryScript;
 
     public Image invImage;
     private InventoryObject invObj;
@@ -24,13 +25,18 @@ public class InventorySquareScript : MonoBehaviour
         {
             invImage.sprite = invObj.Image;
         }
+        inventoryScript.Inventory[inventoryPosition] = invObj;
     }
 
     // Update is called once per frame
     void Update()
     {
         {
-            
+            if (invObj != null) //Change so doesn't update every frame
+            {
+                inventoryScript.Inventory[inventoryPosition] = invObj;
+                Debug.Log(invObj.Amount);
+            }
         }
     }
 }
