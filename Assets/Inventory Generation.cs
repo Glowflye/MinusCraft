@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class InventoryGeneration : MonoBehaviour
 {
-    private InventoryObject[] invItems; //Length should be 14 as that's the length of inventory
+    public InventoryObject[] invItems; //Length should be 14 as that's the length of inventory
     public Canvas canvas;
     private InventoryObject[] possibleItems;
 
-    private Image[] inventoryImages = { null, null, null };
+    public Image tempImg;
+
+    private Image[] inventoryImages;
     private string[] inventoryNames = {"stick", "coal", "torch"}; //Add unique items later
     private int[] inventoryValue = { 1, 1, 2 };
 
@@ -18,12 +21,21 @@ public class InventoryGeneration : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        //ADD TO INV IMAGES
+        for (int i = 0; i < 4; i++)
+        {
+            inventoryImages.Append(tempImg);
+        }
+
+
         //CREATE OBJECTS FROM EACH ITEM IN NAMES
-        for (int i = 0; i < inventoryImages.Length; i++) //Name, Image, Value, Amount
+        for (int i = 0; i < inventoryImages.Length - 1; i++) //Name, Image, Value, Amount
         {
             //int amount = random.Next(1, 32); //Not all objects can stack to 32 so change later --> move later
             InventoryObject invObj = new InventoryObject(inventoryNames[i], inventoryImages[i], inventoryValue[i], 0); //0 should be set to value later
-            possibleItems[i] = invObj;
+            Debug.Log(i);
+            possibleItems.Append(invObj);
         }
 
         //CREATE OBJECTS FOR USE IN INV
@@ -38,7 +50,9 @@ public class InventoryGeneration : MonoBehaviour
             }
             else
             {
-                //Do nothing, there's only a 1/5 chance an item will generate in the inventory for now (may change later, playtest first)
+                InventoryObject tempInvObj = null;
+                invItems[i] = tempInvObj;
+                //There's only a 1/5 chance an item will generate in the inventory for now (may change later, playtest first)
             }
         }
     }

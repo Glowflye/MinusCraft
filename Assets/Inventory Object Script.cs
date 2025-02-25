@@ -24,4 +24,10 @@ public class InventoryObject
         get { return amount; }
         set { amount = value; }
     }
+
+    public Image Image
+    {
+        get { return image; }
+        set { image = value; }
+    }
 }
