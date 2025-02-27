@@ -52,7 +52,7 @@ public class InventoryGeneration : MonoBehaviour
         {
             System.Random random = new System.Random();
             int genTrue = random.Next(0, 4);
-            if (genTrue < 4) //CHANGE
+            if (genTrue < 2) //CHANGE
             {
                 InventoryObject tempInvObj = new InventoryObject ( string.Empty, null, 0, 0 );
                 Debug.Log(possibleItems[0]); //FIX
