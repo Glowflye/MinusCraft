@@ -31,7 +31,6 @@ public class InventorySquareScript : MonoBehaviour, IPointerDownHandler
         else
         {
             invImage.sprite = invObj.Image;
-            dropPlaceEmpty = false;
         }
         inventoryScript.Inventory[inventoryPosition] = invObj;
     }
