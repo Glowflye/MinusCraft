@@ -30,4 +30,10 @@ public class InventoryObject
         get { return image; }
         set { image = value; }
     }
+
+    public string Name
+    {
+        get { return name; }
+        set { name = value; }
+    }
 }

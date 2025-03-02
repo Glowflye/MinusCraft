@@ -12,6 +12,7 @@ public class CraftingSquareScript : MonoBehaviour, IPointerDownHandler
 
     public InventoryBehaviour inventoryScript;
     public MouseBehaviourScript mouseBehaviourScript;
+    public CraftingOutputSquareScript craftOutputSquareScript;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +22,11 @@ public class CraftingSquareScript : MonoBehaviour, IPointerDownHandler
 
     // Update is called once per frame
     void Update()
-    {
+    { 
+        if (craftOutputSquareScript.clearCraftTable == true)
+        {
+            craftObj = null;
+        }
         if (craftObj == null) //Change so doesn't update every frame
         {
             craftImage.sprite = Resources.Load<Sprite>("[TEMP] Transparent");
@@ -39,7 +44,6 @@ public class CraftingSquareScript : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log("HIIII");
         if (mouseBehaviourScript.pickedUpObject == null)
         {
             if (craftObj != null)
@@ -56,7 +60,6 @@ public class CraftingSquareScript : MonoBehaviour, IPointerDownHandler
         {
             if (craftObj == null)
             {
-                Debug.Log("Stupidity");
                 //mouseBehaviourScript.checkDropPlace = inventoryPosition;
                 craftObj = mouseBehaviourScript.pickedUpObject;
                 inventoryScript.CraftInventory[craftPosition] = craftObj;
