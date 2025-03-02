@@ -40,16 +40,16 @@ public class InventorySquareScript : MonoBehaviour, IPointerDownHandler
     {
             if (invObj == null) //Change so doesn't update every frame
             {
-            invImage.sprite = Resources.Load<Sprite>("[TEMP] Transparent");
-            inventoryScript.Inventory[inventoryPosition] = null;
+                invImage.sprite = Resources.Load<Sprite>("[TEMP] Transparent");
+                inventoryScript.Inventory[inventoryPosition] = null;
             }
             else
             {
-            invImage.enabled = true;
-            inventoryScript.Inventory[inventoryPosition] = invObj;
-            invImage.sprite = invObj.Image;
-            //Debug.Log(invObj.Amount);
-            //Debug.Log("WHAT");
+                invImage.enabled = true;
+                inventoryScript.Inventory[inventoryPosition] = invObj;
+                invImage.sprite = invObj.Image;
+                //Debug.Log(invObj.Amount);
+                //Debug.Log("WHAT");
             }
     }
 

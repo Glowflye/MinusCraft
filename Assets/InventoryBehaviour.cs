@@ -1,31 +1,42 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class InventoryBehaviour : MonoBehaviour
 {
     public bool isHandFull;
     public object itemInHand;
 
-    public InventoryObject[] Inventory = new InventoryObject[14];
+    public InventoryGeneration invGenScript;
+    public CraftingRecipesScript craftRecipesScript;
+    public InventoryBehaviour invBehaviour;
+
+    public InventoryObject[] Inventory = { null, null, null, null, null, null, null, null, null };
+    public InventoryObject[] CraftInventory = { null, null, null, null, null, null, null, null, null };
+
     public InventoryGeneration invGen;
 
     // Start is called before the first frame update
     void Start()
     {
-        //Debug.Log(Inventory[1].Amount); //Says null object reference, not true
+        //
     }
 
-    // Update is called once per frame
+    //Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0) == true && !isHandFull)
-        {
+            foreach (KeyValuePair<string, InventoryObject[]> item in craftRecipesScript.craftingRecipes) //Null?
             {
-                //itemInHand = ;
+                bool isEqual = Enumerable.SequenceEqual(item.Value, CraftInventory);
+                if (isEqual == true)
+                {
+                    Debug.Log("TRUE CRAFTING RECIPE");
+                }
             }
-        }
     }
 }
