@@ -12,6 +12,7 @@ public class MouseBehaviourScript : MonoBehaviour
     public Image mouseImg;
 
     public InventoryObject pickedUpObject;
+    public int? pickedUpObjectInitAmount;
 
     public int checkDropPlace;
     public bool drop = false;
@@ -20,6 +21,16 @@ public class MouseBehaviourScript : MonoBehaviour
 
     void Update()
     {
-        
+        if (pickedUpObject != null)
+        {
+            if (pickedUpObjectInitAmount == null)
+            {
+                pickedUpObjectInitAmount = pickedUpObject.Amount;
+            }
+            else if (pickedUpObject.Amount == 0)
+            {
+                pickedUpObjectInitAmount = null;
+            }
+        }
     }
 }

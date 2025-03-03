@@ -15,6 +15,7 @@ public class InventoryBehaviour : MonoBehaviour
     public InventoryGeneration invGenScript;
     public CraftingRecipesScript craftRecipesScript;
     public InventoryBehaviour invBehaviour;
+    public CraftingOutputSquareScript craftOutputSquareScript;
 
     public bool canCraft = false;
 
@@ -34,20 +35,23 @@ public class InventoryBehaviour : MonoBehaviour
     //Update is called once per frame
     void Update()
     {
-        foreach (KeyValuePair<string, InventoryObject[]> item in craftRecipesScript.craftingRecipes) //Null?
+        if (craftOutputSquareScript.outputObj == null)
         {
-            bool isEqual = Enumerable.SequenceEqual(item.Value, CraftInventory);
-            if (isEqual == true)
+            foreach (KeyValuePair<string, InventoryObject[]> item in craftRecipesScript.craftingRecipes) //Null?
             {
-                string craftableName = item.Key;
-                Debug.Log(item.Key);
-                completeRecipe = craftRecipesScript.componentDictionary[craftableName];
-                canCraft = true;
-                break;
-            }
-            else
-            {
-                canCraft = false;
+                bool isEqual = Enumerable.SequenceEqual(item.Value, CraftInventory);
+                if (isEqual == true)
+                {
+                    string craftableName = item.Key;
+                    Debug.Log(item.Key);
+                    completeRecipe = craftRecipesScript.componentDictionary[craftableName];
+                    canCraft = true;
+                    break;
+                }
+                else
+                {
+                    canCraft = false;
+                }
             }
         }
     }

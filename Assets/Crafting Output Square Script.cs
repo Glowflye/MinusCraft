@@ -16,8 +16,9 @@ public class CraftingOutputSquareScript : MonoBehaviour, IPointerDownHandler
 
     private Sprite tempImg;
 
-    private InventoryObject outputObj;
+    public InventoryObject outputObj;
 
+    private int? loggedAmount = -500;
     public AudioClip popSound;
 
     // Start is called before the first frame update
@@ -29,11 +30,22 @@ public class CraftingOutputSquareScript : MonoBehaviour, IPointerDownHandler
     // Update is called once per frame
     void Update()
     {
-        if (invBehaviour.canCraft == true)
+        if (outputObj != null)
         {
-            Debug.Log("YESSIR");
+            if (outputObj.Amount == 0)
+            {
+                invBehaviour.canCraft = false;
+                outputObj = null;
+            }
+        }
+        if (invBehaviour.canCraft == true && outputObj == null)
+        {
             outputObj = invBehaviour.completeRecipe;
             outputImg.sprite = outputObj.Image;
+        }
+        else if (invBehaviour.canCraft == true && outputObj != null)
+        {
+            //Do nothing
         }
         else
         {
@@ -44,25 +56,44 @@ public class CraftingOutputSquareScript : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log("HUH");
         if (invBehaviour.canCraft == true)
         {
             if (mouseBehaviourScript.pickedUpObject == null)
             {
-                if (outputObj != null)
+                if (outputObj != null && outputObj.Amount >= 1)
                 {
-                    mouseBehaviourScript.pickedUpObject = outputObj; //Need to update inv list
-                    outputObj = null;
-                    for (int i = 0; i < 9; i++)
+                    if (loggedAmount == -500)
                     {
-                        invBehaviour.CraftInventory[i] = null;
+                        loggedAmount = outputObj.Amount;
+                        Debug.Log("LOGGED: " + loggedAmount);
                     }
-                    clearCraftTable = true;
+                    mouseBehaviourScript.pickedUpObject = outputObj; //Need to update inv list
+                    if (outputObj.Amount == loggedAmount)
+                    {
+                        for (int i = 0; i < 9; i++)
+                        {
+                            invBehaviour.CraftInventory[i] = null;
+                        }
+                        clearCraftTable = true;
+                    }
+                    mouseBehaviourScript.pickedUpObject.Amount -= 1;
                     AudioSource.PlayClipAtPoint(popSound, transform.position);
                     StartCoroutine(WaitForCraftToClear());
                 }
+                if (outputObj.Amount <= 0)
+                {
+                    Debug.Log("NONE LEFT");
+                    outputObj = null;
+                    loggedAmount = -500;
+                }
                 //Else do nothing
             }
+        }
+        else
+        {
+            Debug.Log("DO");
+            outputObj = null;
+            outputImg.sprite = tempImg;
         }
     }
 

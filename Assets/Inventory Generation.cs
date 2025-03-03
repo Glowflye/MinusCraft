@@ -38,7 +38,7 @@ public class InventoryGeneration : MonoBehaviour
             if (genTrue < 5) //CHANGE
             {
                 InventoryObject tempInvObj;
-                tempInvObj = possibleItems[Random.Range(4, possibleItems.Length)];
+                tempInvObj = possibleItems[Random.Range(7, possibleItems.Length)];
                 invItems[i] = tempInvObj;
             }
             else

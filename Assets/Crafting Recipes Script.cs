@@ -44,12 +44,15 @@ public class CraftingRecipesScript : MonoBehaviour
         componentDictionary.Add("writtenPaper", writtenPaper);
 
         //DON'T GENERATE ITEMS ABOVE
-
-        componentDictionary.Add("coal", coal);
-        componentDictionary.Add("sticks", sticks);
-        componentDictionary.Add("glass", glass);
         componentDictionary.Add("fallenStar", fallenStar);
         componentDictionary.Add("paper", paper);
+        componentDictionary.Add("glass", glass);
+
+        //TEMP ABOVE
+        componentDictionary.Add("coal", coal);
+        componentDictionary.Add("sticks", sticks);
+ 
+        
 
         //ADD ITEMS TO RECIPE DICTIONARY --> only add items that have a crafting recipe
         craftingRecipes.Add("sticks", new InventoryObject[] { null, wood, null, null, wood, null, null, wood, null });
