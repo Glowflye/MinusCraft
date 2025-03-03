@@ -50,8 +50,6 @@ public class InventorySquareScript : MonoBehaviour, IPointerDownHandler
                 invImage.enabled = true;
                 inventoryScript.Inventory[inventoryPosition] = invObj;
                 invImage.sprite = invObj.Image;
-                //Debug.Log(invObj.Amount);
-                //Debug.Log("WHAT");
             }
     }
 
@@ -74,8 +72,6 @@ public class InventorySquareScript : MonoBehaviour, IPointerDownHandler
         {
             if (invObj == null)
             {
-                //Debug.Log("Stupidity");
-                //mouseBehaviourScript.checkDropPlace = inventoryPosition;
                 invObj = mouseBehaviourScript.pickedUpObject;
                 mouseBehaviourScript.pickedUpObject = null;
                 AudioSource.PlayClipAtPoint(popSound, new Vector3(0, 0, 0));

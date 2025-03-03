@@ -34,11 +34,10 @@ public class InventoryGeneration : MonoBehaviour
         {
             //System.Random random = new System.Random();
             int genTrue = Random.Range(0, 5);
-            Debug.Log("GEN TRUE = " + genTrue);
             if (genTrue < 5) //CHANGE
             {
                 InventoryObject tempInvObj;
-                tempInvObj = possibleItems[Random.Range(7, possibleItems.Length)];
+                tempInvObj = possibleItems[Random.Range(5, possibleItems.Length)]; //CHANGE GEN POSITION HERE
                 invItems[i] = tempInvObj;
             }
             else
@@ -49,11 +48,5 @@ public class InventoryGeneration : MonoBehaviour
             }
         }
         generationComplete = true;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -34,8 +35,8 @@ public class CraftingOutputSquareScript : MonoBehaviour, IPointerDownHandler
         {
             if (outputObj.Amount == 0)
             {
-                invBehaviour.canCraft = false;
-                outputObj = null;
+                //invBehaviour.canCraft = false;
+                //outputObj = null;
             }
         }
         if (invBehaviour.canCraft == true && outputObj == null)
@@ -60,7 +61,7 @@ public class CraftingOutputSquareScript : MonoBehaviour, IPointerDownHandler
         {
             if (mouseBehaviourScript.pickedUpObject == null)
             {
-                if (outputObj != null && outputObj.Amount >= 1)
+                if (outputObj != null && outputObj.Amount > 0)
                 {
                     if (loggedAmount == -500)
                     {
@@ -76,13 +77,15 @@ public class CraftingOutputSquareScript : MonoBehaviour, IPointerDownHandler
                         }
                         clearCraftTable = true;
                     }
-                    mouseBehaviourScript.pickedUpObject.Amount -= 1;
+                    outputObj.Amount -= 1;
                     AudioSource.PlayClipAtPoint(popSound, transform.position);
                     StartCoroutine(WaitForCraftToClear());
                 }
                 if (outputObj.Amount <= 0)
                 {
                     Debug.Log("NONE LEFT");
+                    invBehaviour.canCraft = false;
+                    outputObj.Amount = Convert.ToInt32(loggedAmount);
                     outputObj = null;
                     loggedAmount = -500;
                 }

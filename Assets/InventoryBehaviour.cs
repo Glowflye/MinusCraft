@@ -51,6 +51,7 @@ public class InventoryBehaviour : MonoBehaviour
                 else
                 {
                     canCraft = false;
+                    completeRecipe = null;
                 }
             }
         }

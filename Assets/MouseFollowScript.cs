@@ -7,15 +7,9 @@ using UnityEngine.UI;
 public class MouseFollowScript : MonoBehaviour
 {
     public MouseBehaviourScript mouseBevScript;
-    //public Image mouseImg;
     public SpriteRenderer mouseRend;
 
     Vector3 position;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -26,10 +20,7 @@ public class MouseFollowScript : MonoBehaviour
             Vector3 currPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mouseRend.sprite = mouseBevScript.pickedUpObject.Image;
-
-                // modify the copy
-                position.z = 10;
-
+            position.z = 10;
             transform.position = position;
         }
         else

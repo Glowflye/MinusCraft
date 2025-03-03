@@ -16,6 +16,8 @@ public class CraftingRecipesScript : MonoBehaviour
     public static InventoryObject morningStar;
     public static InventoryObject paper;
     public static InventoryObject writtenPaper;
+    public static InventoryObject woodenPickaxe;
+    public static InventoryObject hammer;
 
     //RECIPE DICTIONARY
     public Dictionary<string, InventoryObject[]> craftingRecipes = new Dictionary<string, InventoryObject[]>();
@@ -36,23 +38,23 @@ public class CraftingRecipesScript : MonoBehaviour
         morningStar = new InventoryObject("morningStar", Resources.Load<Sprite>("MorningStar"), 1, 1);
         paper = new InventoryObject("paper", Resources.Load<Sprite>("Paper"), 1, 1);
         writtenPaper = new InventoryObject("writtenPaper", Resources.Load<Sprite>("WrittenPaper"), 1, 1);
+        woodenPickaxe = new InventoryObject("woodenPickaxe", Resources.Load<Sprite>("WoodenPickaxe"), 1, 1);
+        hammer = new InventoryObject("hammer", Resources.Load<Sprite>("Hammer"), 1, 1);
 
         //ADD COMPONENT OBJECTS TO COMPONENT DICTIONARY
-        componentDictionary.Add("wood", wood);
         componentDictionary.Add("torch", torch);
         componentDictionary.Add("morningStar", morningStar);
         componentDictionary.Add("writtenPaper", writtenPaper);
+        componentDictionary.Add("woodenPickaxe", woodenPickaxe);
+        componentDictionary.Add("hammer", hammer);
 
-        //DON'T GENERATE ITEMS ABOVE
+        //DON'T GENERATE ITEMS ABOVE (start generating inventory from this position)
+        componentDictionary.Add("sticks", sticks);
+        componentDictionary.Add("wood", wood);
         componentDictionary.Add("fallenStar", fallenStar);
         componentDictionary.Add("paper", paper);
         componentDictionary.Add("glass", glass);
-
-        //TEMP ABOVE
         componentDictionary.Add("coal", coal);
-        componentDictionary.Add("sticks", sticks);
- 
-        
 
         //ADD ITEMS TO RECIPE DICTIONARY --> only add items that have a crafting recipe
         craftingRecipes.Add("sticks", new InventoryObject[] { null, wood, null, null, wood, null, null, wood, null });
@@ -60,5 +62,7 @@ public class CraftingRecipesScript : MonoBehaviour
         craftingRecipes.Add("torch", new InventoryObject[] { coal, null, null, sticks, null, null, null, null, null });
         craftingRecipes.Add("morningStar", new InventoryObject[] { fallenStar, glass, null, glass, sticks, null, null, null, sticks });
         craftingRecipes.Add("writtenPaper", new InventoryObject[] { paper, coal, null, null, null, null, null, null, null } );
+        craftingRecipes.Add("woodenPickaxe", new InventoryObject[] { wood, wood, wood, null, sticks, null, null, sticks, null });
+        craftingRecipes.Add("hammer", new InventoryObject[] { wood, null, null, null, sticks, null, null, null, sticks });
     }
 }

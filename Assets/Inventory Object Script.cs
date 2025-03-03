@@ -16,7 +16,6 @@ public class InventoryObject
         image = Image;
         value = Value;
         amount = Amount;
-
     }
 
     public int Amount
