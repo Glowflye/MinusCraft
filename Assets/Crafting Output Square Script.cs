@@ -18,6 +18,8 @@ public class CraftingOutputSquareScript : MonoBehaviour, IPointerDownHandler
 
     private InventoryObject outputObj;
 
+    public AudioClip popSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +44,7 @@ public class CraftingOutputSquareScript : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        Debug.Log("HUH");
         if (invBehaviour.canCraft == true)
         {
             if (mouseBehaviourScript.pickedUpObject == null)
@@ -55,6 +58,7 @@ public class CraftingOutputSquareScript : MonoBehaviour, IPointerDownHandler
                         invBehaviour.CraftInventory[i] = null;
                     }
                     clearCraftTable = true;
+                    AudioSource.PlayClipAtPoint(popSound, transform.position);
                     StartCoroutine(WaitForCraftToClear());
                 }
                 //Else do nothing

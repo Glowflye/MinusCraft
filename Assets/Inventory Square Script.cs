@@ -18,6 +18,8 @@ public class InventorySquareScript : MonoBehaviour, IPointerDownHandler
 
     public bool dropPlaceEmpty;
 
+    public AudioClip popSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -63,7 +65,8 @@ public class InventorySquareScript : MonoBehaviour, IPointerDownHandler
                 mouseBehaviourScript.pickedUpObject = invObj; //Need to update inv list
                 invObj = null;
                 Debug.Log(invObj);
-                Debug.Log("this is empty");
+                //Debug.Log("this is empty");
+                AudioSource.PlayClipAtPoint(popSound, new Vector3(0, 0, 0));
             }
             //Else do nothing
         }
@@ -71,10 +74,11 @@ public class InventorySquareScript : MonoBehaviour, IPointerDownHandler
         {
             if (invObj == null)
             {
-                Debug.Log("Stupidity");
+                //Debug.Log("Stupidity");
                 //mouseBehaviourScript.checkDropPlace = inventoryPosition;
                 invObj = mouseBehaviourScript.pickedUpObject;
                 mouseBehaviourScript.pickedUpObject = null;
+                AudioSource.PlayClipAtPoint(popSound, new Vector3(0, 0, 0));
             }
             //Else do nothing
         }

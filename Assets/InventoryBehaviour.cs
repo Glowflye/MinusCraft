@@ -20,7 +20,7 @@ public class InventoryBehaviour : MonoBehaviour
 
     public InventoryObject completeRecipe;
 
-    public InventoryObject[] Inventory = { null, null, null, null, null, null, null, null, null };
+    public InventoryObject[] Inventory = { null, null, null, null, null, null, null, null, null, null, null, null, null, null };
     public InventoryObject[] CraftInventory = { null, null, null, null, null, null, null, null, null };
 
     public InventoryGeneration invGen;
@@ -39,11 +39,11 @@ public class InventoryBehaviour : MonoBehaviour
             bool isEqual = Enumerable.SequenceEqual(item.Value, CraftInventory);
             if (isEqual == true)
             {
-                Debug.Log("TRUE CRAFTING RECIPE");
                 string craftableName = item.Key;
+                Debug.Log(item.Key);
                 completeRecipe = craftRecipesScript.componentDictionary[craftableName];
                 canCraft = true;
-
+                break;
             }
             else
             {

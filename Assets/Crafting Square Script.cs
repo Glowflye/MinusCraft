@@ -14,6 +14,8 @@ public class CraftingSquareScript : MonoBehaviour, IPointerDownHandler
     public MouseBehaviourScript mouseBehaviourScript;
     public CraftingOutputSquareScript craftOutputSquareScript;
 
+    public AudioClip popSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,6 +55,7 @@ public class CraftingSquareScript : MonoBehaviour, IPointerDownHandler
                 inventoryScript.CraftInventory[craftPosition] = null;
                 Debug.Log(craftObj);
                 Debug.Log("this is empty");
+                AudioSource.PlayClipAtPoint(popSound, new Vector3(0, 0, 0));
             }
             //Else do nothing
         }
@@ -64,6 +67,7 @@ public class CraftingSquareScript : MonoBehaviour, IPointerDownHandler
                 craftObj = mouseBehaviourScript.pickedUpObject;
                 inventoryScript.CraftInventory[craftPosition] = craftObj;
                 mouseBehaviourScript.pickedUpObject = null;
+                AudioSource.PlayClipAtPoint(popSound, new Vector3(0, 0, 0));
             }
             //Else do nothing
         }
